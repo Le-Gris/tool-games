@@ -130,5 +130,5 @@ def main():
     # run model
     run_model(model=model)
 
-if __name__ == 'main':
+if __name__ == '__main__':
     main()
