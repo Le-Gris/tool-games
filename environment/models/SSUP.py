@@ -69,6 +69,7 @@ class SSUP:
         Sample an action from the object oriented prior for the given tool
         """
         tool = self.tools[toolname]
+        # TODO: learn p conditioned on tools P(object|tool) -- start with enumeration   
         object_idx = np.random.choice(np.arange(len(self.objects)), p=np.ones(len(self.objects))/len(self.objects))
         object = self.objects[object_idx]
         tool_BB = self.get_bounding_box(tool)
@@ -115,7 +116,6 @@ class SSUP:
                 log_prob_pos = pos_dist.log_prob(torch.tensor(pos))
                 self.update((log_prob_tool, log_prob_pos), noisy_reward)
                 prior[tool].append((tool, pos))
-                #demonstrateTPPlacement(self.tp, tool, pos, hz=80.)
         self.prior = prior
 
     def sample_prior(self):
