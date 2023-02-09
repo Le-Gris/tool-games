@@ -110,6 +110,7 @@ def run_model(model):
                     model.update((log_prob_tool, log_prob_pos), noisy_reward)
                 
         else:
+            #TODO: verify that this makes sense!
             model.update((log_prob_tool, log_prob_pos), noisy_reward)
 
 
@@ -120,11 +121,14 @@ def main():
     tnm = args.tnm
     task_dir = os.path.join(json_dir, tnm)
 
+    # setup game env
     trial, pgw, tp = setup_world(task_dir=task_dir)
 
+    # init model object
     model = init_ssup(trial=trial, pgw=pgw, tp=tp)
 
-
+    # run model
+    run_model(model=model)
 
 if __name__ == 'main':
     main()
